@@ -12,3 +12,8 @@ gulp.task('dist', ['html', 'images:dist', 'styles:dist', 'vendor', 'browserify']
     .pipe(rev.manifest())
     .pipe(gulp.dest('dist'));
 });
+
+var ghpages = require('gh-pages');
+gulp.task('gh-pages-dev', ['html', 'images', 'styles', 'vendor', 'browserify'], function() {
+  ghpages.publish('.tmp', { add : true }, function(err) { console.log(err); });
+});
